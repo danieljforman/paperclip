@@ -10,12 +10,18 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
       lexical: path.resolve(__dirname, "./node_modules/lexical/Lexical.mjs"),
 
-      // Force Vite to resolve internal workspace packages from source during UI build
       "@paperclipai/shared": path.resolve(__dirname, "../packages/shared/src/index.ts"),
-      "@paperclipai/shared/telemetry": path.resolve(__dirname, "../packages/shared/src/telemetry/index.ts"),
+      "@paperclipai/shared/telemetry": path.resolve(
+        __dirname,
+        "../packages/shared/src/telemetry/index.ts"
+      ),
 
       "@paperclipai/db": path.resolve(__dirname, "../packages/db/src/index.ts"),
-      "@paperclipai/adapter-utils": path.resolve(__dirname, "../packages/adapter-utils/src/index.ts"),
+
+      "@paperclipai/adapter-utils": path.resolve(
+        __dirname,
+        "../packages/adapter-utils/src/index.ts"
+      ),
       "@paperclipai/adapter-utils/server-utils": path.resolve(
         __dirname,
         "../packages/adapter-utils/src/server-utils.ts"
@@ -24,6 +30,10 @@ export default defineConfig({
       "@paperclipai/adapter-claude-local": path.resolve(
         __dirname,
         "../packages/adapters/claude-local/src/index.ts"
+      ),
+      "@paperclipai/adapter-claude-local/ui": path.resolve(
+        __dirname,
+        "../packages/adapters/claude-local/src/ui/index.ts"
       ),
       "@paperclipai/adapter-claude-local/server": path.resolve(
         __dirname,

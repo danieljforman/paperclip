@@ -11,7 +11,8 @@
     "url": "https://github.com/paperclipai/paperclip",
     "directory": "packages/db"
   },
-  "type": "module",
+  "type": "module", 
+  "main": "./dist/index.js",
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.ts"

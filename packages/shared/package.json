@@ -12,6 +12,7 @@
     "directory": "packages/shared"
   },
   "type": "module",
+  "main": "./dist/index.js",
   "exports": {
     ".": "./src/index.ts",
     "./telemetry": "./src/telemetry/index.ts",

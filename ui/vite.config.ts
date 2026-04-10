@@ -6,70 +6,85 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-      lexical: path.resolve(__dirname, "./node_modules/lexical/Lexical.mjs"),
+    alias: [
+      { find: "@", replacement: path.resolve(__dirname, "./src") },
+      {
+        find: "lexical",
+        replacement: path.resolve(__dirname, "./node_modules/lexical/Lexical.mjs")
+      },
 
-      "@paperclipai/shared": path.resolve(__dirname, "../packages/shared/src/index.ts"),
-      "@paperclipai/shared/telemetry": path.resolve(
-        __dirname,
-        "../packages/shared/src/telemetry/index.ts"
-      ),
+      // Shared
+      {
+        find: "@paperclipai/shared/telemetry",
+        replacement: path.resolve(__dirname, "../packages/shared/src/telemetry/index.ts")
+      },
+      {
+        find: "@paperclipai/shared",
+        replacement: path.resolve(__dirname, "../packages/shared/src/index.ts")
+      },
 
-      "@paperclipai/db": path.resolve(__dirname, "../packages/db/src/index.ts"),
+      // DB
+      {
+        find: "@paperclipai/db",
+        replacement: path.resolve(__dirname, "../packages/db/src/index.ts")
+      },
 
-      "@paperclipai/adapter-utils": path.resolve(
-        __dirname,
-        "../packages/adapter-utils/src/index.ts"
-      ),
-      "@paperclipai/adapter-utils/server-utils": path.resolve(
-        __dirname,
-        "../packages/adapter-utils/src/server-utils.ts"
-      ),
+      // Adapter utils
+      {
+        find: "@paperclipai/adapter-utils/server-utils",
+        replacement: path.resolve(__dirname, "../packages/adapter-utils/src/server-utils.ts")
+      },
+      {
+        find: "@paperclipai/adapter-utils",
+        replacement: path.resolve(__dirname, "../packages/adapter-utils/src/index.ts")
+      },
 
-      "@paperclipai/adapter-claude-local": path.resolve(
-        __dirname,
-        "../packages/adapters/claude-local/src/index.ts"
-      ),
-      "@paperclipai/adapter-claude-local/ui": path.resolve(
-        __dirname,
-        "../packages/adapters/claude-local/src/ui/index.ts"
-      ),
-      "@paperclipai/adapter-claude-local/server": path.resolve(
-        __dirname,
-        "../packages/adapters/claude-local/src/server/index.ts"
-      ),
+      // Claude local — specific subpaths FIRST
+      {
+        find: "@paperclipai/adapter-claude-local/ui",
+        replacement: path.resolve(__dirname, "../packages/adapters/claude-local/src/ui/index.ts")
+      },
+      {
+        find: "@paperclipai/adapter-claude-local/server",
+        replacement: path.resolve(__dirname, "../packages/adapters/claude-local/src/server/index.ts")
+      },
+      {
+        find: "@paperclipai/adapter-claude-local",
+        replacement: path.resolve(__dirname, "../packages/adapters/claude-local/src/index.ts")
+      },
 
-      "@paperclipai/adapter-codex-local": path.resolve(
-        __dirname,
-        "../packages/adapters/codex-local/src/index.ts"
-      ),
-      "@paperclipai/adapter-cursor-local": path.resolve(
-        __dirname,
-        "../packages/adapters/cursor-local/src/index.ts"
-      ),
-      "@paperclipai/adapter-gemini-local": path.resolve(
-        __dirname,
-        "../packages/adapters/gemini-local/src/index.ts"
-      ),
-      "@paperclipai/adapter-openclaw-gateway": path.resolve(
-        __dirname,
-        "../packages/adapters/openclaw-gateway/src/index.ts"
-      ),
-      "@paperclipai/adapter-opencode-local": path.resolve(
-        __dirname,
-        "../packages/adapters/opencode-local/src/index.ts"
-      ),
-      "@paperclipai/adapter-pi-local": path.resolve(
-        __dirname,
-        "../packages/adapters/pi-local/src/index.ts"
-      ),
+      // Other adapters
+      {
+        find: "@paperclipai/adapter-codex-local",
+        replacement: path.resolve(__dirname, "../packages/adapters/codex-local/src/index.ts")
+      },
+      {
+        find: "@paperclipai/adapter-cursor-local",
+        replacement: path.resolve(__dirname, "../packages/adapters/cursor-local/src/index.ts")
+      },
+      {
+        find: "@paperclipai/adapter-gemini-local",
+        replacement: path.resolve(__dirname, "../packages/adapters/gemini-local/src/index.ts")
+      },
+      {
+        find: "@paperclipai/adapter-openclaw-gateway",
+        replacement: path.resolve(__dirname, "../packages/adapters/openclaw-gateway/src/index.ts")
+      },
+      {
+        find: "@paperclipai/adapter-opencode-local",
+        replacement: path.resolve(__dirname, "../packages/adapters/opencode-local/src/index.ts")
+      },
+      {
+        find: "@paperclipai/adapter-pi-local",
+        replacement: path.resolve(__dirname, "../packages/adapters/pi-local/src/index.ts")
+      },
 
-      "@paperclipai/plugin-sdk": path.resolve(
-        __dirname,
-        "../packages/plugins/sdk/src/index.ts"
-      )
-    }
+      // Plugin SDK
+      {
+        find: "@paperclipai/plugin-sdk",
+        replacement: path.resolve(__dirname, "../packages/plugins/sdk/src/index.ts")
+      }
+    ]
   },
   server: {
     port: 5173,

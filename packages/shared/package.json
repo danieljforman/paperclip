@@ -9,12 +9,19 @@
 
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "default": "./dist/index.js"
     },
     "./telemetry": {
-      "import": "./dist/telemetry/index.js",
-      "types": "./dist/telemetry/index.d.ts"
+      "types": "./dist/telemetry/index.d.ts",
+      "import": "./dist/telemetry/index.js"
+    }
+  },
+
+  "typesVersions": {
+    "*": {
+      "*": ["src/*"]
     }
   },
 

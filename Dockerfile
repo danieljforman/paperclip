@@ -46,16 +46,24 @@ WORKDIR /app
 COPY --from=deps /app /app
 COPY . .
 
-# Build ALL shared deps first
+# Build workspace dependencies first
 RUN pnpm --filter @paperclipai/shared build
 RUN pnpm --filter @paperclipai/adapter-utils build
-RUN pnpm --filter @paperclipai/adapter-claude-local build
-
-# Then UI + rest
-RUN pnpm --filter @paperclipai/ui build
 RUN pnpm --filter @paperclipai/plugin-sdk build
 RUN pnpm --filter @paperclipai/db build
+
+# Build all adapters before app packages
+RUN pnpm --filter @paperclipai/adapter-claude-local build
+RUN pnpm --filter @paperclipai/adapter-codex-local build
+RUN pnpm --filter @paperclipai/adapter-cursor-local build
+RUN pnpm --filter @paperclipai/adapter-gemini-local build
+RUN pnpm --filter @paperclipai/adapter-openclaw-gateway build
+RUN pnpm --filter @paperclipai/adapter-opencode-local build
+RUN pnpm --filter @paperclipai/adapter-pi-local build
+
+# Build server before UI, matching the earlier successful pattern more closely
 RUN pnpm --filter @paperclipai/server build
+RUN pnpm --filter @paperclipai/ui build
 
 RUN test -f server/dist/index.js || (echo "ERROR: server build output missing" && exit 1)
 
@@ -69,7 +77,6 @@ RUN npm install --global --omit=dev @anthropic-ai/claude-code@latest @openai/cod
   && chown node:node /paperclip
 
 USER node
-
 WORKDIR /app/server
 
 EXPOSE 3100

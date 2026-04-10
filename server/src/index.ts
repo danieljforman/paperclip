@@ -1,3 +1,14 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Force runtime to use compiled db
+process.env.NODE_PATH = path.resolve(__dirname, "../../packages");
+
+import Module from "node:module";
+Module.Module?._initPaths?.();
+
 /// <reference path="./types/express.d.ts" />
 import { existsSync, readFileSync, rmSync } from "node:fs";
 import { createServer } from "node:http";

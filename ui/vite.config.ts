@@ -53,14 +53,24 @@ export default defineConfig({
         replacement: path.resolve(__dirname, "../packages/adapters/claude-local/src/index.ts")
       },
 
-      // Other adapters
+      // Cursor local — specific subpaths FIRST
       {
-        find: "@paperclipai/adapter-codex-local",
-        replacement: path.resolve(__dirname, "../packages/adapters/codex-local/src/index.ts")
+        find: "@paperclipai/adapter-cursor-local/ui",
+        replacement: path.resolve(__dirname, "../packages/adapters/cursor-local/src/ui/index.ts")
+      },
+      {
+        find: "@paperclipai/adapter-cursor-local/server",
+        replacement: path.resolve(__dirname, "../packages/adapters/cursor-local/src/server/index.ts")
       },
       {
         find: "@paperclipai/adapter-cursor-local",
         replacement: path.resolve(__dirname, "../packages/adapters/cursor-local/src/index.ts")
+      },
+
+      // Other adapters
+      {
+        find: "@paperclipai/adapter-codex-local",
+        replacement: path.resolve(__dirname, "../packages/adapters/codex-local/src/index.ts")
       },
       {
         find: "@paperclipai/adapter-gemini-local",

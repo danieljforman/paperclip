@@ -46,13 +46,11 @@ WORKDIR /app
 COPY --from=deps /app /app
 COPY . .
 
-# Build workspace dependencies first
 RUN pnpm --filter @paperclipai/shared build
 RUN pnpm --filter @paperclipai/adapter-utils build
 RUN pnpm --filter @paperclipai/plugin-sdk build
 RUN pnpm --filter @paperclipai/db build
 
-# Build all adapters before app packages
 RUN pnpm --filter @paperclipai/adapter-claude-local build
 RUN pnpm --filter @paperclipai/adapter-codex-local build
 RUN pnpm --filter @paperclipai/adapter-cursor-local build
@@ -61,7 +59,6 @@ RUN pnpm --filter @paperclipai/adapter-openclaw-gateway build
 RUN pnpm --filter @paperclipai/adapter-opencode-local build
 RUN pnpm --filter @paperclipai/adapter-pi-local build
 
-# Build server before UI, matching the earlier successful pattern more closely
 RUN pnpm --filter @paperclipai/server build
 RUN pnpm --filter @paperclipai/ui build
 

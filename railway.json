@@ -7,7 +7,7 @@
   "deploy": {
     "runtime": "V2",
     "numReplicas": 1,
-    "startCommand": "cd /app/cli && pnpm exec tsx src/index.ts auth bootstrap-ceo",
+    "startCommand": "pnpm --filter server start",
     "sleepApplication": false,
     "useLegacyStacker": false,
     "ipv6EgressEnabled": false,

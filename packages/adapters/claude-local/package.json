@@ -2,6 +2,15 @@
   "name": "@paperclipai/adapter-claude-local",
   "version": "0.3.1",
   "license": "MIT",
+  "homepage": "https://github.com/paperclipai/paperclip",
+  "bugs": {
+    "url": "https://github.com/paperclipai/paperclip/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paperclipai/paperclip",
+    "directory": "packages/adapters/claude-local"
+  },
   "type": "module",
 
   "main": "./dist/index.js",
@@ -16,6 +25,14 @@
     "./server": {
       "import": "./dist/server/index.js",
       "types": "./dist/server/index.d.ts"
+    },
+    "./ui": {
+      "import": "./dist/ui/index.js",
+      "types": "./dist/ui/index.d.ts"
+    },
+    "./cli": {
+      "import": "./dist/cli/index.js",
+      "types": "./dist/cli/index.d.ts"
     }
   },
 
@@ -25,7 +42,10 @@
     }
   },
 
-  "files": ["dist"],
+  "files": [
+    "dist",
+    "skills"
+  ],
 
   "scripts": {
     "build": "tsc",

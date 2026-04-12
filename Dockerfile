@@ -78,4 +78,4 @@ WORKDIR /app/server
 
 EXPOSE 3100
 
-CMD ["pnpm", "start"]
+CMD ["pnpm", "--filter", "server", "start"]
